@@ -1,4 +1,4 @@
-// c8 ignore start
+/* c8 ignore start */
 
 import { promises as fs } from "fs";
 import { extname } from "path";

@@ -1,20 +1,4 @@
-# `@virtualstate/combinational`
-
-This project is in semver alpha stage
-
-[//]: # (badges)
-
-### Support
-
- ![Node.js supported](https://img.shields.io/badge/node-%3E%3D16.0.0-blue) ![Deno supported](https://img.shields.io/badge/deno-%3E%3D1.17.0-blue) 
-
-### Test Coverage
-
- ![100%25 lines covered](https://img.shields.io/badge/lines-100%25-brightgreen) ![100%25 statements covered](https://img.shields.io/badge/statements-100%25-brightgreen) ![100%25 functions covered](https://img.shields.io/badge/functions-100%25-brightgreen) ![100%25 branches covered](https://img.shields.io/badge/branches-100%25-brightgreen)
-
-[//]: # (badges)
-
-[//]: # (src/trying-to-write-documentation/combinational-how.tsx)
+/* c8 ignore start */
 
 import {ok, h, descendants} from "@virtualstate/focus";
 import {
@@ -37,10 +21,12 @@ import {
  *
  * To split code up, add an empty comment
  * A comment must have its starting & ending markers on their own lines
+ */
 
+/*
 # Hello
+ */
 
-```typescript jsx
 const nodeTrue = <Boolean>{true}</Boolean>
 const nodeTrueNumber = <Boolean>{1}</Boolean>
 const nodeTrueString = <Boolean>{" "}</Boolean>
@@ -253,6 +239,5 @@ const nandFalse = (
     </Nand>
 );
 await assertFalse(nandFalse);
-```
 
-[//]: # (src/trying-to-write-documentation/combinational-how.tsx)
+export default 1;

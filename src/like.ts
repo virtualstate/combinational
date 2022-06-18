@@ -1,5 +1,6 @@
-// c8 ignore start
+/* c8 ignore start */
 import {isStaticChildNode, isUnknownJSXNode, name} from "@virtualstate/focus";
+import {isArray} from "./is";
 
 export function isLike<T>(value: unknown, ...and: unknown[]): value is T {
   if (!and.length) return !!value;
@@ -14,28 +15,16 @@ export function ok(value: unknown, message?: string): asserts value {
   }
 }
 
-export function isRejected<R extends PromiseRejectedResult>(
-  value: PromiseSettledResult<unknown>
-): value is R {
-  return value?.status === "rejected";
-}
-
-export function isFulfilled<T>(
-  value: PromiseSettledResult<T>
-): value is PromiseFulfilledResult<T> {
-  return value?.status === "fulfilled";
-}
-
 export function isBooleanTrueArray(array: unknown): array is true[] {
-  return Array.isArray(array) &&array.every(value => value === true);
+  return isArray(array) && array.every(value => value === true);
 }
 
 export function isBooleanFalseArray(array: unknown): array is true[] {
-  return Array.isArray(array) && array.every(value => value === false);
+  return isArray(array) && array.every(value => value === false);
 }
 
 export function isBooleanArray(array: unknown): array is boolean[] {
-  return Array.isArray(array) && array.every(value => typeof value === "boolean")
+  return isArray(array) && array.every(value => typeof value === "boolean")
 }
 
 export function isTruthy(input: unknown) {

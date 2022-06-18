@@ -1,5 +1,5 @@
-// c8 ignore start
+/* c8 ignore start */
 
-await import("./accessors-how");
+await import("./combinational-how");
 
 export default 1;

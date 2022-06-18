@@ -1,5 +1,5 @@
 import {descendants, h, ok} from "@virtualstate/focus";
-import {And, Boolean, Nand, Xnor, Xor} from "../../combinational";
+import {And, Boolean, Nand, Nor, Xnor, Xor} from "../../combinational";
 import {isBooleanFalseArray, isBooleanTrueArray} from "@virtualstate/combinational";
 import {Not} from "../../combinational";
 import {Or} from "../../combinational";
@@ -53,6 +53,7 @@ const nodeAndFalse = (
     </And>
 );
 
+await assertFalse(<And />);
 await assertTrue(nodeAndTrue);
 await assertFalse(nodeAndFalse);
 
@@ -67,6 +68,7 @@ const notTrue = (
     </Not>
 );
 
+await assertTrue(<Not />);
 await assertFalse(not);
 await assertTrue(notTrue);
 
@@ -83,8 +85,26 @@ const orFalse = (
     </Or>
 );
 
+await assertFalse(<Or />);
 await assertTrue(or);
 await assertFalse(orFalse);
+
+const nor = (
+    <Nor>
+        {nodeAndTrue}
+        {nodeAndFalse}
+    </Nor>
+)
+const norTrue = (
+    <Nor>
+        {nodeFalse}
+        {nodeAndFalse}
+    </Nor>
+);
+
+await assertTrue(<Nor />);
+await assertFalse(nor);
+await assertTrue(norTrue);
 
 const xor = (
     <Xor>
@@ -92,6 +112,7 @@ const xor = (
         {nodeFalse}
     </Xor>
 )
+await assertFalse(<Xor />);
 await assertFalse(xor);
 const xorTrueOne = (
     <Xor>
@@ -124,6 +145,7 @@ const xnor = (
         {orFalse}
     </Xnor>
 );
+await assertTrue(<Xnor />);
 await assertTrue(xnor);
 const xnorTrue = (
     <Xnor>
@@ -161,6 +183,7 @@ const nand = (
         {orFalse}
     </Nand>
 );
+await assertTrue(<Nand />);
 await assertTrue(nand);
 const nandTrue = (
     <Nand>

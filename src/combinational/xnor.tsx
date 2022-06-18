@@ -4,13 +4,8 @@ import {Or} from "./or";
 import {isTruthy} from "@virtualstate/combinational";
 
 export async function *Xnor(options: unknown, input?: unknown) {
-    let yielded = false;
     for await (const snapshot of children(input)) {
         const truthy = snapshot.map(isTruthy);
         yield truthy.every(value => truthy[0] === value);
-        yielded = true;
-    }
-    if (!yielded) {
-        yield false;
     }
 }

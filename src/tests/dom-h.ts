@@ -1,4 +1,4 @@
-// c8 ignore start
+/* c8 ignore start */
 import dom from "./dom-document";
 import {
   isDescendantFulfilled,

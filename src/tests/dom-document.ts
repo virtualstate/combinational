@@ -1,4 +1,4 @@
-// c8 ignore start
+/* c8 ignore start */
 
 import type { DOMNamespace } from "dom-lite";
 import { ok } from "@virtualstate/focus";

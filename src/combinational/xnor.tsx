@@ -1,7 +1,5 @@
 import {children, h} from "@virtualstate/focus";
-import {Not} from "./not";
-import {Or} from "./or";
-import {isTruthy} from "@virtualstate/combinational";
+import {isTruthy} from "../like";
 
 export async function *Xnor(options: unknown, input?: unknown) {
     for await (const snapshot of children(input)) {

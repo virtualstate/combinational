@@ -1,4 +1,4 @@
-import {children, h} from "@virtualstate/focus";
+import {h} from "@virtualstate/focus";
 import { Boolean } from "./boolean";
 import {Not} from "./not";
 

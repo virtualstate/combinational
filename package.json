@@ -50,7 +50,7 @@
     "@types/rimraf": "^3.0.2",
     "@types/uuid": "^8.3.3",
     "@types/whatwg-url": "^8.2.1",
-    "@virtualstate/focus": "^1.0.1-alpha.105",
+    "@virtualstate/focus": "^1.0.1-alpha.109",
     "@virtualstate/promise": "^1.1.5-alpha.15",
     "@virtualstate/union": "^2.48.1",
     "c8": "^7.11.3",

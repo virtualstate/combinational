@@ -1,18 +1,18 @@
 import {HalfAdder} from "../../circuit";
 import {h, createFragment} from "@virtualstate/focus";
 import {anAsyncThing} from "@virtualstate/promise/the-thing";
-import {pair} from "../../circuit/pair";
+import {pair} from "../../circuit";
 import {ok} from "../../like";
-import {FullAdder} from "../../circuit/adder/full";
+import {FullAdder} from "../../circuit";
 
-function assertPair<T extends unknown[]>(result: unknown[], expected?: T): asserts result is T {
+export function assertPair<T extends unknown[]>(result: unknown[], expected?: T): asserts result is T {
     if (!expected) {
         ok(!result);
         return;
     }
-    ok(result.length === expected.length);
+    ok(result.length === expected.length, "Expected lengths to match");
     for (const [index, value] of Object.entries(result)) {
-        ok(expected[index] === value);
+        ok(expected[index] === value, "Expected values to match");
     }
 }
 

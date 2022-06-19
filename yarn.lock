@@ -1440,10 +1440,10 @@
   dependencies:
     "@types/node" "*"
 
-"@virtualstate/focus@^1.0.1-alpha.105":
-  version "1.0.1-alpha.105"
-  resolved "https://registry.npmjs.org/@virtualstate/focus/-/focus-1.0.1-alpha.105.tgz#47e0b6489e4992f436201568eead6581d2832843"
-  integrity sha512-vi0228aiA9gE0kveySuZ8BuCoQr4i0FBTH70ocDkJMSfA7pf4ci4mj1wHl5bi8rs6PKVKUg9D9kvhyV+8uma8A==
+"@virtualstate/focus@^1.0.1-alpha.109":
+  version "1.0.1-alpha.109"
+  resolved "https://registry.npmjs.org/@virtualstate/focus/-/focus-1.0.1-alpha.109.tgz#2206e7eecd8f61532ade5290e79b609a4ec3281b"
+  integrity sha512-mDy8vepLCuSowMn0IhsGqZPcXw3u6Uaa8+uFb8jUzaHM2S16Fod9wZRufGSvczYWv5mM0yyYaqRDi0dN0UUEMw==
 
 "@virtualstate/promise@^1.1.5-alpha.15":
   version "1.1.5-alpha.15"

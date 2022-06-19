@@ -36,7 +36,8 @@ export function isTruthy(input: unknown) {
   if (!isUnknownJSXNode(input)) {
     return false;
   }
+  // console.log(input)
   // Expect a name to exist if we have a value and
-  ok(name(input));
+  ok(name(input), "Expected name for truthy value");
   return true;
 }

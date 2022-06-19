@@ -1,4 +1,4 @@
-import {HalfAdder, Rest} from "../../circuit";
+import {Eight, HalfAdder, Rest} from "../../circuit";
 import {h, createFragment, children} from "@virtualstate/focus";
 import {anAsyncThing} from "@virtualstate/promise/the-thing";
 import {pair} from "../../circuit";
@@ -215,95 +215,147 @@ console.log(await children(
     </EightAdder>
 ))
 // 1 + 0 = 1
-console.log(await children(
-    <EightAdder>
-        {true}
-        {false}
-        {false}
-        {false}
-        {false}
-        {false}
-        {false}
-        {false}
-        {false}
-        {false}
-        {false}
-        {false}
-        {false}
-        {false}
-        {false}
-        {false}
-    </EightAdder>
-))
+const one = <EightAdder>
+    {true}
+    {false}
+    {false}
+    {false}
+    {false}
+    {false}
+    {false}
+    {false}
+    {false}
+    {false}
+    {false}
+    {false}
+    {false}
+    {false}
+    {false}
+    {false}
+</EightAdder>;
+console.log(await children(one))
 // 1 + 1 = 2
 // 1 + 1 = 10
-console.log(await children(
-    <EightAdder>
-        {true}
-        {false}
-        {false}
-        {false}
-        {false}
-        {false}
-        {false}
-        {false}
+const two = <EightAdder>
+    {true}
+    {false}
+    {false}
+    {false}
+    {false}
+    {false}
+    {false}
+    {false}
 
-        {true}
-        {false}
-        {false}
-        {false}
-        {false}
-        {false}
-        {false}
-        {false}
-    </EightAdder>
-))
+    {true}
+    {false}
+    {false}
+    {false}
+    {false}
+    {false}
+    {false}
+    {false}
+</EightAdder>
+console.log(await children(two))
 // 3 + 1 = 4
 // 11 + 1 = 100
-console.log(await children(
-    <EightAdder>
-        {true}
-        {true}
-        {false}
-        {false}
-        {false}
-        {false}
-        {false}
-        {false}
+const four = <EightAdder>
+    {true}
+    {true}
+    {false}
+    {false}
+    {false}
+    {false}
+    {false}
+    {false}
 
-        {true}
-        {false}
-        {false}
-        {false}
-        {false}
-        {false}
-        {false}
-        {false}
-    </EightAdder>
-))
+    {true}
+    {false}
+    {false}
+    {false}
+    {false}
+    {false}
+    {false}
+    {false}
+</EightAdder>
+console.log(await children(four))
 // 3 + 3 = 6
 // 11 + 11 = 110
-console.log(await children(
-    <EightAdder>
-        {true}
-        {true}
-        {false}
-        {false}
-        {false}
-        {false}
-        {false}
-        {false}
+const six = <EightAdder>
+    {true}
+    {true}
+    {false}
+    {false}
+    {false}
+    {false}
+    {false}
+    {false}
 
-        {true}
-        {true}
-        {false}
-        {false}
-        {false}
-        {false}
-        {false}
-        {false}
+    {true}
+    {true}
+    {false}
+    {false}
+    {false}
+    {false}
+    {false}
+    {false}
+</EightAdder>;
+console.log(await children(six))
+
+function assertBooleanResult(binaryBooleans: unknown[], expectedNumberResult: number) {
+    const expectedBinary = expectedNumberResult.toString(2).padStart(8, "0");
+
+    const binary = binaryBooleans
+        .slice(0, 8)
+        .reverse()
+        .map(value => value ? "1" : "0")
+        .join("");
+
+    ok(binary === expectedBinary, `Expected ${expectedBinary} got ${binary}`);
+
+    const parsed = parseInt(binary, 2);
+
+    ok(parsed === expectedNumberResult, `Expected ${expectedNumberResult} got ${parsed}`);
+}
+
+const seven = (
+    <EightAdder>
+        <Eight>
+            {one}
+        </Eight>
+        <Eight>
+            {six}
+        </Eight>
     </EightAdder>
-))
+)
+
+assertBooleanResult(
+    await children(
+        seven,
+    ),
+    7
+);
+const fourteen = (
+    <EightAdder>
+        <Eight>
+            {seven}
+        </Eight>
+        <Eight>
+            {seven}
+        </Eight>
+    </EightAdder>
+)
+assertBooleanResult(await children(fourteen), 14);
+const twentyEight = (
+    <EightAdder>
+        <Eight>
+            {fourteen}
+        </Eight>
+        <Eight>
+            {fourteen}
+        </Eight>
+    </EightAdder>
+);
+assertBooleanResult(await children(twentyEight), 28);
 
 async function add(a: number, b: number) {
     const expectedNumberResult = a + b;
@@ -326,13 +378,7 @@ async function add(a: number, b: number) {
         </EightAdder>
     );
 
-    const binary = result.slice(0, 8).reverse().map(value => value ? "1" : "0").join("");
-
-    ok(binary === expectedBinary, `Expected ${expectedBinary} got ${binary}`);
-
-    const parsed = parseInt(binary, 2);
-
-    ok(parsed === expectedNumberResult, `Expected ${expectedNumberResult} got ${parsed}`);
+    assertBooleanResult(result, expectedNumberResult);
 
     console.groupEnd();
 }

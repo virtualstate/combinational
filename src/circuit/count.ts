@@ -10,7 +10,7 @@ export async function *count(input: unknown, count: number, allowMore?: boolean)
         if (allowMore && snapshot.length > count) {
             yield snapshot.slice(0, count);
         } else {
-            ok(snapshot.length === count, `Expected ${count}`);
+            ok(snapshot.length === count, `Expected ${count}, got ${snapshot.length}`);
             yield snapshot;
         }
     }

@@ -1,11 +1,11 @@
-import {Eight, HalfAdder, Rest} from "../../circuit";
+import {Eight, HalfAdder, Rest} from "@virtualstate/combinational";
 import {h, createFragment, children} from "@virtualstate/focus";
 import {anAsyncThing} from "@virtualstate/promise/the-thing";
 import {pair} from "../../circuit";
-import {ok} from "../../like";
-import {FullAdder, rest} from "../../circuit";
+import {ok} from "@virtualstate/combinational";
+import {FullAdder, rest} from "@virtualstate/combinational";
 import {assertPair} from "./adder";
-import {EightAdder} from "../../circuit/adder/eight-adder";
+import {EightAdder} from "@virtualstate/combinational";
 
 const split1 = rest(
     <FullAdder>

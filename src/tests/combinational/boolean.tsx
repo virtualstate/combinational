@@ -1,8 +1,8 @@
 import {descendants, h, ok} from "@virtualstate/focus";
-import {And, Boolean, Nand, Nor, Xnor, Xor} from "../../combinational";
+import {And, Boolean, Nand, Nor, Xnor, Xor} from "@virtualstate/combinational";
 import {isBooleanFalseArray, isBooleanTrueArray} from "@virtualstate/combinational";
-import {Not} from "../../combinational";
-import {Or} from "../../combinational";
+import {Not} from "@virtualstate/combinational";
+import {Or} from "@virtualstate/combinational";
 
 export default 1;
 

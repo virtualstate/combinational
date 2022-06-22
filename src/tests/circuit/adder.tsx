@@ -1,9 +1,9 @@
-import {HalfAdder} from "../../circuit";
+import {HalfAdder} from "@virtualstate/combinational";
 import {h, createFragment} from "@virtualstate/focus";
 import {anAsyncThing} from "@virtualstate/promise/the-thing";
-import {pair} from "../../circuit";
-import {ok} from "../../like";
-import {FullAdder} from "../../circuit";
+import {pair} from "@virtualstate/combinational";
+import {ok} from "@virtualstate/combinational";
+import {FullAdder} from "@virtualstate/combinational";
 
 export function assertPair<T extends unknown[]>(result: unknown[], expected?: T): asserts result is T {
     if (!expected) {

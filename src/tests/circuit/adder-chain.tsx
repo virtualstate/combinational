@@ -386,7 +386,11 @@ async function add(a: number, b: number) {
 for (let i = 0; i < 255; i += Math.random()) {
     const a = Math.min(255, Math.round(i + (Math.random() * 5)));
     const b = Math.min(255, Math.round(i + (Math.random() * 5)));
+    /* c8 ignore start */
     if (a + b > 255) break;
+    /* c8 ignore stop */
     await add(a, b);
+    /* c8 ignore start */
     if (a + b === 255) break;
+    /* c8 ignore stop */
 }

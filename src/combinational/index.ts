@@ -6,3 +6,4 @@ export * from "./not";
 export * from "./or";
 export * from "./xnor";
 export * from "./xor";
+export * from "./combination";

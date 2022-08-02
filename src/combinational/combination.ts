@@ -7,7 +7,7 @@ import {Xor} from "./xor";
 import {Xnor} from "./xnor";
 import {Nand} from "./nand";
 
-const operations: Record<string, unknown> = {
+const operations: Record<string | symbol, unknown> = {
     "&": And,
     "&&": And,
     "|": Or,
@@ -25,37 +25,35 @@ export async function Combination(options?: Record<string | symbol, unknown>, in
 
     ok(Array.isArray(raw));
 
-    const allOperations: Record<string | symbol, unknown> = {
-        ...operations,
-        ...options
-    }
+    const flat = raw
+        .flat()
+        .flatMap(value => {
+            if (typeof value !== "string") return value;
+            return value
+                .split(/\s+/g)
+                .filter(value => value)
+        })
 
-    const operators = raw
+    const operators = flat
         .filter((value): value is (string | symbol) => (
             typeof value === "string" ||
             typeof value === "symbol"
         ))
-        .filter(value => {
-            if (allOperations[value]) return true;
-            if (typeof value !== "string") return false;
-            const trim = value.trim();
-            return allOperations[trim];
-        })
 
-    console.log(operators);
+    // console.log(operators);
 
-    let remaining = [...raw];
+    let remaining = [...flat];
 
     for (const [operatorIndex, operatorKey] of operators.entries()) {
         const operator = typeof operatorKey === "string" && !operators[operatorKey] ? operatorKey.trim() : operatorKey;
-        const node = allOperations[operator];
+        const node = options?.[operator] ?? operations[operator];
         ok(node, `Unknown operation ${String(operator)}`);
         const index = remaining.indexOf(operatorKey);
         const parts = remaining.slice(0, operatorIndex === operators.length - 1 ? remaining.length : index + 2)
             .filter(value => value !== operatorKey);
         const result = h(node, options, ...parts)
         remaining.splice(0, index + 2, result)
-        console.log({ remaining, operatorKey, parts, index });
+        // console.log({ remaining, operatorKey, parts, index });
     }
 
     return remaining;

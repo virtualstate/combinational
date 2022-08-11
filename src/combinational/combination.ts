@@ -6,6 +6,7 @@ import {Not} from "./not";
 import {Xor} from "./xor";
 import {Xnor} from "./xnor";
 import {Nand} from "./nand";
+import {Add, Divide, EightAdder, FullAdder, HalfAdder, Minus, Multiply} from "../circuit";
 
 const operations: Record<string | symbol, unknown> = {
     "&": And,
@@ -17,7 +18,11 @@ const operations: Record<string | symbol, unknown> = {
     "^": Xor,
     "~^": Xnor,
     "^~": Xnor,
-    "~&": Nand
+    "~&": Nand,
+    "/": Divide,
+    "*": Multiply,
+    "+": Add,
+    "-": Minus,
 }
 
 export async function Combination(options?: Record<string | symbol, unknown>, input?: unknown) {
